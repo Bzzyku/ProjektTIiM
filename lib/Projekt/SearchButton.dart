@@ -1,3 +1,4 @@
+import 'package:calendar_view/calendar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Projekt/Api_manager.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
@@ -23,14 +24,10 @@ class _SearchButtonState extends State<SearchButton> {
   GetGroupsAndLecturers getGroupsAndLecturers = GetGroupsAndLecturers();
   int x = 0;
   
+  
     @override
   void initState() {
     super.initState();
- 
-    setState(() {
-      getGroupsAndLecturers.fetchDataAndBuildItems(widget.index);
-      x++;
-    });
   }
 
   @override
@@ -39,12 +36,13 @@ class _SearchButtonState extends State<SearchButton> {
     super.dispose();
 }
 
-  void navigateTo(value){
+  void navigateTo(String value){
+
       selectedValue = value;
             Navigator.push(
               context, 
               MaterialPageRoute(
-                builder: (context)=> const DayViewTimetable()));
+                builder: (context) => DayViewTimetable(index: widget.index, group: value,)));
 
   }
 
@@ -67,8 +65,9 @@ class _SearchButtonState extends State<SearchButton> {
 
 @override
   Widget build(BuildContext context) {
-    return Builder(
-      builder: (BuildContext context) {
+    return FutureBuilder<List<DropdownMenuItem<String>>>(
+      future: getGroupsAndLecturers.fetchDataAndBuildItems(widget.index),
+      builder: (BuildContext context,AsyncSnapshot<List<DropdownMenuItem<String>>> snapshot) {
         return DropdownButtonHideUnderline(
           child: DropdownButton2<String>(
             isExpanded: true,
@@ -79,10 +78,10 @@ class _SearchButtonState extends State<SearchButton> {
                 color: Theme.of(context).hintColor,
               ),
             ),
-            items: widget.index == 0 ?  getGroupsAndLecturers.savedGroup : getGroupsAndLecturers.savedLecturers,
+            items: snapshot.data,
             value: selectedValue,
             onChanged: (value) {
-              navigateTo(value);
+              navigateTo(value!);
             },
             buttonStyleData: const ButtonStyleData(
               padding: EdgeInsets.symmetric(horizontal: 16),

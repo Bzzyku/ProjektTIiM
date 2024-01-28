@@ -108,21 +108,21 @@ List<CalendarEventData<Event>> convertGroupTimetableToListOfEvents(Map<String, M
   return savedEvents;
 }
 
-Future<void> fetchDataAndBuildEvents(String group) async {
+Future<List<CalendarEventData<Event>>> fetchDataAndBuildEvents(String group) async {
       await fetchDataTimetable(group);
-        savedEvents = convertGroupTimetableToListOfEvents(events);
+        return savedEvents = convertGroupTimetableToListOfEvents(events);
          
   }
 
-Future<void> fetchDataAndBuildItems(int value) async {
-    if (value == 1 && savedGroup.isEmpty) {
+Future<List<DropdownMenuItem<String>>> fetchDataAndBuildItems(int value) async {
+    if (value == 0 && savedGroup.isEmpty) {
       await fetchDataGroup();
-      savedGroup = convertListOfStringsToDropdownMenuItems(groups);
+      return convertListOfStringsToDropdownMenuItems(groups);
       
     }
-     else if (value == 0 && savedLecturers.isEmpty){
+     else {
       await fetchDataGroupLecturers();
-        savedLecturers = convertMapOfStringsToDropdownMenuItems(lecturers);   
+        return convertMapOfStringsToDropdownMenuItems(lecturers);   
     }
   }
 
