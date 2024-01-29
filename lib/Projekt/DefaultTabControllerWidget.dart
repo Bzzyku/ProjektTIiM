@@ -17,10 +17,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Material(
-    
-      child: DefaultTabControllerWidget(firstTabBarView: firstTabBarView,secondTabBarView: secondTabBarView,text: text,),
+    return  DefaultTabControllerWidget(firstTabBarView: firstTabBarView,secondTabBarView: secondTabBarView,text: text,
     );
+
   }
 }
 

@@ -1,4 +1,6 @@
+import 'package:calendar_view/calendar_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Projekt/CalendarEventDataAdapter.dart';
 import 'package:flutter_application_1/Projekt/DrawerWidget.dart';
 import 'package:flutter_application_1/Projekt/SearchButton.dart';
 
@@ -6,10 +8,11 @@ import 'package:flutter_application_1/Projekt/SearchButton.dart';
   bool a = false;
 void main() {
   runApp(
-     const MaterialApp(
-      home: WelcomeScreen(),
-    ),
-  );
+      const  MaterialApp(
+        home: WelcomeScreen(),
+        // your app configuration
+      ),
+    );
 }
 
 class WelcomeScreen extends StatelessWidget {
@@ -33,7 +36,7 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     
-    return   Scaffold(
+    return    Scaffold(
         appBar:  AppBar(
           title: const Center(child: Text('Plan Zajeć')),
         ),
@@ -46,7 +49,7 @@ class WelcomeScreen extends StatelessWidget {
                 height: 30,
                 width: 30,
                ),
-                Center(child: SearchButton(index: index))]),
+                Center(child: Material(child: SearchButton(index: index)))]),
         ),
              drawer:  DrawerWidget(selectedIndex: index) ,                                     
       );

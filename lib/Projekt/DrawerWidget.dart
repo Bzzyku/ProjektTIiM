@@ -25,8 +25,7 @@ class _DrawerState extends State<DrawerWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return  Material(
-      child: Drawer(
+    return Drawer(
                   child: ListView(
                     padding: EdgeInsets.zero,
                     children: [
@@ -54,7 +53,7 @@ class _DrawerState extends State<DrawerWidget> {
                         
                     ],
                   ),
-                 ),
-    );
+                 );
+
   }
 }

@@ -1,15 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Projekt/Api_manager.dart';
-import 'package:calendar_view/calendar_view.dart'; 
-class Event {
-  final String title;
-  final String description;
-
-  Event({
-    required this.title,
-    required this.description,
-  });
-}
 
   class GetGroupsAndLecturers{
     GetGroupsAndLecturers();
@@ -19,16 +9,14 @@ class Event {
   List<DropdownMenuItem<String>> savedLecturers = [];
   List<DropdownMenuItem<String>> savedGroup = [];
   Timetable api = const Timetable();
-  Map<String,Map<String, List<String>>> events = {};
-  List<CalendarEventData<Event>> savedEvents = [];
-
+  List<dynamic> events = [];
 
   Future<void> fetchDataTimetable(String group) async {
     try {
-      Map<String, Map<String, List<String>>> apiData = await api.groupTimetable(group); 
+      List<dynamic> apiData = await api.groupTimetable(group); 
         events = apiData;
     } catch (e) {
-      print("Error");
+      print("Error: $e");
     }
   }
 
@@ -37,7 +25,7 @@ class Event {
       List<String> apiData = await api.group(); 
         groups = apiData;
     } catch (e) {
-      print("Error");
+      print("Error: $e");
     }
   }
 
@@ -46,9 +34,10 @@ class Event {
       Map<String, String> apiData = await api.lecturers();
         lecturers = apiData;
     } catch (e) {
-      print("Error");
+      print("Error: $e");
     }
   }
+
 
   List<DropdownMenuItem<String>> convertListOfStringsToDropdownMenuItems(List<String> groups) {
   return  groups.map((group) {
@@ -74,45 +63,9 @@ class Event {
   }).toList(); 
 }
 
-List<CalendarEventData<Event>> convertGroupTimetableToListOfEvents(Map<String, Map<String, List<String>>> data) {
-  
 
-  // Iteracja po dacie
-  data.forEach((date, blocks) {
-    // Iteracja po blokach
-    blocks.forEach((block, subjects) {
-      // Iteracja po przedmiotach
-      subjects.forEach((subject) {
-        // Ustawienie odpowiednich dat i godzin dla startTime i endTime
-       DateTime startTime = DateTime.parse('$date ${block.split('-')[0]}');
-        DateTime endTime = DateTime.parse('$date ${block.split('-')[1]}').add(const Duration(hours: 1, minutes: 35));
 
-        // Przykład: Tworzenie instancji CalendarEventData i dodanie jej do listy
-        savedEvents.add(
-          CalendarEventData(
-            date: startTime,
-            startTime: startTime,
-            endTime: endTime,
-            event: Event(
-              title: subject[0], // Display
-              description: subject[1], // Pełne info
-            ),
-            title: subject[0], // Display
-            description: subject[1], // Pełne info
-          ),
-        );
-      });
-    });
-  });
 
-  return savedEvents;
-}
-
-Future<List<CalendarEventData<Event>>> fetchDataAndBuildEvents(String group) async {
-      await fetchDataTimetable(group);
-        return savedEvents = convertGroupTimetableToListOfEvents(events);
-         
-  }
 
 Future<List<DropdownMenuItem<String>>> fetchDataAndBuildItems(int value) async {
     if (value == 0 && savedGroup.isEmpty) {
@@ -125,7 +78,4 @@ Future<List<DropdownMenuItem<String>>> fetchDataAndBuildItems(int value) async {
         return convertMapOfStringsToDropdownMenuItems(lecturers);   
     }
   }
-
- 
-
   }

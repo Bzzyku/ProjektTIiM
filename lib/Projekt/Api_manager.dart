@@ -79,7 +79,7 @@ Future<Map<String, dynamic>> actualization() async {
     }
   }
 
-Future<Map<String, Map<String,List<String>>>> groupTimetable(String groupName) async {
+Future<List<dynamic>> groupTimetable(String groupName) async {
     final String apiUrl = '$baseUrl/plan/stud' ;
     final response = await http.get(
       Uri.parse(apiUrl),
