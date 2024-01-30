@@ -97,8 +97,8 @@ Future<List<dynamic>> groupTimetable(String groupName) async {
   }
 
 
-Future<Map<String, dynamic>> lecturerTimetable(String lecturerId) async {
-    final String apiUrl = '$baseUrl/grp' ;
+Future<List<dynamic>> lecturerTimetable(String lecturerId) async {
+    final String apiUrl = '$baseUrl/plan/prow' ;
     final response = await http.get(
       Uri.parse(apiUrl),
       headers: {

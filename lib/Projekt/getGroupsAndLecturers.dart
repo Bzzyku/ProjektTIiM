@@ -20,6 +20,15 @@ class GetGroupsAndLecturers {
     }
   }
 
+    Future<void> fetchDataLecturerTimetable(String group) async {
+    try {
+      List<dynamic> apiData = await api.lecturerTimetable(group);
+      events = apiData;
+    } catch (e) {
+      print("Error: $e");
+    }
+  }
+
   Future<void> fetchDataGroup() async {
     try {
       List<String> apiData = await api.group();
@@ -79,3 +88,4 @@ class GetGroupsAndLecturers {
     }
   }
 }
+
