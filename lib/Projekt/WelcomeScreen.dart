@@ -1,14 +1,10 @@
-import 'package:calendar_view/calendar_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Projekt/CalendarEventDataAdapter.dart';
 import 'package:flutter_application_1/Projekt/DrawerWidget.dart';
 import 'package:flutter_application_1/Projekt/SearchButton.dart';
 
-  
-  bool a = false;
 void main() {
   runApp(
-      const  MaterialApp(
+     const  MaterialApp(
         home: WelcomeScreen(),
         // your app configuration
       ),
@@ -34,9 +30,7 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    
-    return    Scaffold(
+    return   Scaffold(
         appBar:  AppBar(
           title: const Center(child: Text('Plan Zajeć')),
         ),

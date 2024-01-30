@@ -3,22 +3,26 @@ import 'package:flutter/material.dart';
 import 'WIdgetOfTabs.dart';
 
 
-class MyApp extends StatelessWidget {
-   const MyApp({
+class MenuTabs extends StatelessWidget {
+   const MenuTabs({
     super.key,
     required this.firstTabBarView,
     required this.secondTabBarView,
-    required this.text,
+    required this.thirdTabBarView,
     });
 
    final Widget firstTabBarView;
    final Widget secondTabBarView;
-   final String text;
+   final Widget thirdTabBarView;
+   
 
   @override
   Widget build(BuildContext context) {
-    return  DefaultTabControllerWidget(firstTabBarView: firstTabBarView,secondTabBarView: secondTabBarView,text: text,
-    );
+    return  DefaultTabControllerWidget(
+      firstTabBarView: firstTabBarView,
+      secondTabBarView: secondTabBarView,
+      thirdTabBarView:thirdTabBarView
+);
 
   }
 }
@@ -28,16 +32,16 @@ class DefaultTabControllerWidget extends StatelessWidget  {
     super.key,
     required this.firstTabBarView,
     required this.secondTabBarView,
-    required this.text,
+    required this .thirdTabBarView,
   });
 
   final Widget firstTabBarView;
   final Widget secondTabBarView;
-  final String text;
+  final Widget thirdTabBarView;
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 2,
+        length: 3,
         child: Scaffold(
           appBar: PreferredSize(
             preferredSize: const Size.fromHeight(80.0),
@@ -53,6 +57,7 @@ class DefaultTabControllerWidget extends StatelessWidget  {
               TabBarView(children: [
                  firstTabBarView,
                  secondTabBarView,
+                 thirdTabBarView,
               ]),
             ],
           ),

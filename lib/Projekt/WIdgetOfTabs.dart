@@ -8,6 +8,7 @@ class WidgetOfTabs extends StatelessWidget {
     return const TabBar(
       tabs: [
         DayTab(),
+        WeekTab(),
         MonthTab(),
       ]
       );
@@ -32,6 +33,17 @@ class MonthTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Tab(
       icon: Tab(icon: Icon(IconData(0x4d)))
+    );
+  }
+}
+
+class WeekTab extends StatelessWidget {
+  const WeekTab({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Tab(
+      icon: Tab(icon: Icon(IconData(0x57)))
     );
   }
 }

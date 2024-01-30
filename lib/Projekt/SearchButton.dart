@@ -1,12 +1,9 @@
 
-import 'package:calendar_view/calendar_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Projekt/Api_manager.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter_application_1/Projekt/DayViewTimetable.dart';
 import 'package:flutter_application_1/Projekt/getGroupsAndLecturers.dart';
-
-import 'CalendarEventDataAdapter.dart';
 
 class SearchButton extends StatefulWidget {
   const SearchButton({
